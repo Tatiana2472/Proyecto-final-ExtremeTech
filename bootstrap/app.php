@@ -1,11 +1,11 @@
 <?php
-
+ 
 use App\Http\Middleware\ForzarHttps;
 use App\Http\Middleware\VerificarAdministrador;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-
+ 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -13,14 +13,19 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Confía en el proxy de Railway para detectar correctamente HTTPS.
+        // Sin esto, $request->secure() siempre da false detrás del proxy y
+        // ForzarHttps entra en un bucle infinito de redirecciones.
+        $middleware->trustProxies(at: '*');
+ 
         // Fuerza HTTPS en producción y agrega encabezados de seguridad.
         $middleware->append(ForzarHttps::class);
-
+ 
         // Alias usado por el grupo de rutas /admin.
         $middleware->alias([
             'admin' => VerificarAdministrador::class,
         ]);
-
+ 
         // A dónde se redirige a quien no ha iniciado sesión.
         $middleware->redirectGuestsTo(fn () => route('login'));
     })
@@ -36,3 +41,4 @@ return Application::configure(basePath: dirname(__DIR__))
             'cvv',
         ]);
     })->create();
+ 
