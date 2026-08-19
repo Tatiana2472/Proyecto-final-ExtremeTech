@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 800" width="1160" height="800"
+     role="img" aria-label="Diagrama de casos de uso del proceso de compra">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0EA5E9"/>
+    </marker>
+  </defs>
+  <rect width="1160" height="800" fill="#ffffff"/>
+
+  <text x="580" y="42" text-anchor="middle" font-size="21" font-weight="700" fill="#111111">
+    Diagrama de casos de uso &#8212; Proceso de compra
+  </text>
+  <text x="580" y="66" text-anchor="middle" font-size="13" fill="#6b7889">
+    Tienda virtual Take Tech CR &#183; Tecnolog&#237;as y Sistemas Web II (ITI-523)
+  </text>
+  <rect x="236" y="96" width="636" height="668" rx="14"
+        fill="#f7f9fc" stroke="#c9d3e0" stroke-width="2"/>
+  <text x="554" y="122" text-anchor="middle"
+        font-size="14" font-weight="700" fill="#111111">Sistema: Tienda virtual Take Tech CR</text>
+  <ellipse cx="392" cy="152" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="157" text-anchor="middle" font-size="13" fill="#23303f">Registrarse / Iniciar sesión</text>
+  <ellipse cx="392" cy="240" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="245" text-anchor="middle" font-size="13" fill="#23303f">Buscar y filtrar productos</text>
+  <ellipse cx="392" cy="328" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="333" text-anchor="middle" font-size="13" fill="#23303f">Ver detalle del producto</text>
+  <ellipse cx="392" cy="424" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="421" text-anchor="middle" font-size="13" fill="#23303f">Administrar el carrito</text>
+  <text x="392" y="437" text-anchor="middle" font-size="13" fill="#23303f">(agregar, actualizar, eliminar)</text>
+  <ellipse cx="392" cy="528" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="525" text-anchor="middle" font-size="13" fill="#23303f">Realizar el pago</text>
+  <text x="392" y="541" text-anchor="middle" font-size="13" fill="#23303f">(proceso de compra)</text>
+  <ellipse cx="392" cy="632" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="629" text-anchor="middle" font-size="13" fill="#23303f">Consultar historial</text>
+  <text x="392" y="645" text-anchor="middle" font-size="13" fill="#23303f">de pedidos</text>
+  <ellipse cx="392" cy="722" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+  <text x="392" y="727" text-anchor="middle" font-size="13" fill="#23303f">Descargar factura en PDF</text>
+  <ellipse cx="706" cy="300" rx="142" ry="34" fill="#eef8f8" stroke="#0EA5E9" stroke-width="1.8"/>
+  <text x="706" y="297" text-anchor="middle" font-size="13" fill="#23303f">Registrar producto visto</text>
+  <text x="706" y="313" text-anchor="middle" font-size="13" fill="#23303f">en la cookie</text>
+  <ellipse cx="706" cy="400" rx="142" ry="34" fill="#eef8f8" stroke="#0EA5E9" stroke-width="1.8"/>
+  <text x="706" y="397" text-anchor="middle" font-size="13" fill="#23303f">Calcular total:</text>
+  <text x="706" y="413" text-anchor="middle" font-size="13" fill="#23303f">IVA 13% + envío</text>
+  <ellipse cx="706" cy="500" rx="142" ry="34" fill="#eef8f8" stroke="#0EA5E9" stroke-width="1.8"/>
+  <text x="706" y="497" text-anchor="middle" font-size="13" fill="#23303f">Procesar pago con</text>
+  <text x="706" y="513" text-anchor="middle" font-size="13" fill="#23303f">la pasarela</text>
+  <ellipse cx="706" cy="596" rx="142" ry="34" fill="#eef8f8" stroke="#0EA5E9" stroke-width="1.8"/>
+  <text x="706" y="593" text-anchor="middle" font-size="13" fill="#23303f">Emitir factura y número</text>
+  <text x="706" y="609" text-anchor="middle" font-size="13" fill="#23303f">de seguimiento</text>
+  <ellipse cx="706" cy="712" rx="142" ry="34" fill="#fff6ec" stroke="#d98b3a" stroke-width="1.8"/>
+  <text x="706" y="709" text-anchor="middle" font-size="13" fill="#23303f">Generar reportes</text>
+  <text x="706" y="725" text-anchor="middle" font-size="13" fill="#23303f">de ventas en PDF</text>
+  <g stroke="#111111" stroke-width="2.2" fill="none" stroke-linecap="round">
+    <circle cx="112" cy="336" r="14" fill="#fff"/>
+    <line x1="112" y1="350" x2="112" y2="388"/>
+    <line x1="90" y1="366" x2="134" y2="366"/>
+    <line x1="112" y1="388" x2="94" y2="420"/>
+    <line x1="112" y1="388" x2="130" y2="420"/>
+  </g>
+  <text x="112" y="442" text-anchor="middle" font-size="15" font-weight="700" fill="#111111">Cliente</text>
+  <text x="112" y="459" text-anchor="middle" font-size="12" fill="#6b7889">(usuario registrado)</text>
+  <g stroke="#111111" stroke-width="2.2" fill="none" stroke-linecap="round">
+    <circle cx="1046" cy="206" r="14" fill="#fff"/>
+    <line x1="1046" y1="220" x2="1046" y2="258"/>
+    <line x1="1024" y1="236" x2="1068" y2="236"/>
+    <line x1="1046" y1="258" x2="1028" y2="290"/>
+    <line x1="1046" y1="258" x2="1064" y2="290"/>
+  </g>
+  <text x="1046" y="312" text-anchor="middle" font-size="15" font-weight="700" fill="#111111">Pasarela de pago</text>
+  <text x="1046" y="329" text-anchor="middle" font-size="12" fill="#6b7889">Tarjeta / PayPal / SINPE</text>
+  <g stroke="#111111" stroke-width="2.2" fill="none" stroke-linecap="round">
+    <circle cx="1046" cy="596" r="14" fill="#fff"/>
+    <line x1="1046" y1="610" x2="1046" y2="648"/>
+    <line x1="1024" y1="626" x2="1068" y2="626"/>
+    <line x1="1046" y1="648" x2="1028" y2="680"/>
+    <line x1="1046" y1="648" x2="1064" y2="680"/>
+  </g>
+  <text x="1046" y="702" text-anchor="middle" font-size="15" font-weight="700" fill="#111111">Administrador</text>
+  <text x="1046" y="719" text-anchor="middle" font-size="12" fill="#6b7889">(es_admin)</text>
+  <line x1="150" y1="380" x2="250" y2="152" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="150" y1="380" x2="250" y2="240" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="150" y1="380" x2="250" y2="328" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="150" y1="380" x2="250" y2="424" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="150" y1="380" x2="250" y2="528" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="150" y1="380" x2="250" y2="632" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="150" y1="380" x2="250" y2="722" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="534" y1="328" x2="564" y2="300" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#flecha)"/>
+  <text x="549.0" y="306.0" text-anchor="middle" font-size="11" font-style="italic" fill="#0EA5E9">&#171;include&#187;</text>
+  <line x1="534" y1="424" x2="564" y2="400" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#flecha)"/>
+  <text x="549.0" y="404.0" text-anchor="middle" font-size="11" font-style="italic" fill="#0EA5E9">&#171;include&#187;</text>
+  <line x1="534" y1="518" x2="564" y2="422" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#flecha)"/>
+  <line x1="534" y1="528" x2="564" y2="500" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#flecha)"/>
+  <text x="555.0" y="506.0" text-anchor="middle" font-size="11" font-style="italic" fill="#0EA5E9">&#171;include&#187;</text>
+  <line x1="534" y1="540" x2="564" y2="582" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#flecha)"/>
+  <text x="543.0" y="581.0" text-anchor="middle" font-size="11" font-style="italic" fill="#0EA5E9">&#171;include&#187;</text>
+  <line x1="534" y1="722" x2="576" y2="626" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#flecha)"/>
+  <text x="565.0" y="690.0" text-anchor="middle" font-size="11" font-style="italic" fill="#0EA5E9">&#171;extend&#187;</text>
+  <line x1="848" y1="492" x2="1000" y2="300" stroke="#8a97a8" stroke-width="1.6"/>
+  <line x1="1000" y1="660" x2="848" y2="712" stroke="#8a97a8" stroke-width="1.6"/>
+  <g font-size="12" fill="#6b7889">
+    <rect x="30" y="700" width="182" height="76" rx="8" fill="#f7f9fc" stroke="#c9d3e0"/>
+    <text x="42" y="720" font-weight="700" fill="#111111">Leyenda</text>
+    <line x1="44" y1="736" x2="76" y2="736" stroke="#8a97a8" stroke-width="1.6"/>
+    <text x="84" y="740">asociación</text>
+    <line x1="44" y1="758" x2="76" y2="758" stroke="#0EA5E9" stroke-width="1.6" stroke-dasharray="7 5"/>
+    <text x="84" y="762">include / extend</text>
+  </g>
+</svg>

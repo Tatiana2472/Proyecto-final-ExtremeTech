@@ -1,0 +1,497 @@
+/* =========================================================================
+   Take Tech CR - estilos propios
+   Se cargan después de Bootstrap para poder ajustar variables y componentes.
+
+   Paleta de la marca: AZUL CLARO y BLANCO, con detalles en NEGRO y NARANJA.
+   Los nombres de variable se mantienen (--ts-*) para no tener que tocar cada
+   regla; lo que cambia es el color al que apuntan.
+   ========================================================================= */
+
+:root {
+    --ts-azul: #0ea5e9;           /* azul claro de la marca */
+    --ts-azul-claro: #7dd3fc;     /* azul muy claro (fondos y realces) */
+    --ts-azul-oscuro: #0277b5;    /* azul para estados hover y textos */
+    --ts-azul-suave: #e8f6fe;     /* fondo suave azulado */
+
+    --ts-naranja: #ff7a1a;        /* naranja de los detalles */
+    --ts-naranja-oscuro: #d95f06; /* naranja para estados hover */
+
+    --ts-negro: #10161d;          /* negro corporativo */
+    --ts-negro-suave: #232d38;    /* negro para estados hover */
+
+    --ts-gris: #f3f9fd;           /* fondo general */
+    --ts-borde: #dbe7ef;
+
+    /* Alias usados por el resto de la hoja de estilos */
+    --ts-acento: var(--ts-azul);
+    --ts-acento-oscuro: var(--ts-azul-oscuro);
+}
+
+body {
+    background-color: var(--ts-gris);
+    color: #1f1f1f;
+    font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Bootstrap trae su propio azul para los .text-primary, .btn-primary y los
+   enlaces: se redefinen para que todo el sitio use el azul de la marca. */
+.text-primary { color: var(--ts-azul-oscuro) !important; }
+.bg-primary { background-color: var(--ts-azul) !important; }
+.border-primary { border-color: var(--ts-azul) !important; }
+
+a { color: var(--ts-azul-oscuro); }
+a:hover { color: var(--ts-negro); }
+
+.btn-primary {
+    background-color: var(--ts-azul-oscuro);
+    border-color: var(--ts-azul-oscuro);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--ts-negro);
+    border-color: var(--ts-negro);
+}
+
+.btn-outline-primary {
+    color: var(--ts-azul-oscuro);
+    border-color: var(--ts-azul-oscuro);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--ts-azul-oscuro);
+    border-color: var(--ts-azul-oscuro);
+    color: #fff;
+}
+
+.text-bg-primary { background-color: var(--ts-azul-oscuro) !important; color: #fff !important; }
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--ts-azul);
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.2);
+}
+
+.form-check-input:checked {
+    background-color: var(--ts-azul-oscuro);
+    border-color: var(--ts-azul-oscuro);
+}
+
+.page-link { color: var(--ts-negro); }
+
+.page-item.active .page-link {
+    background-color: var(--ts-azul-oscuro);
+    border-color: var(--ts-azul-oscuro);
+    color: #fff;
+}
+
+/* -------------------------------- Logotipo ------------------------------ */
+
+.ts-logo {
+    height: 42px;
+    width: auto;
+    display: block;
+}
+
+.ts-logo-pie {
+    height: 52px;
+    width: auto;
+    margin-bottom: 0.75rem;
+}
+
+@media (max-width: 575.98px) {
+    .ts-logo { height: 34px; }
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ------------------------------- Encabezado ----------------------------- */
+
+.ts-barra-superior {
+    background: var(--ts-negro);
+    color: #dcdcdc;
+    font-size: 0.85rem;
+}
+
+.navbar-ts {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(16, 22, 29, 0.1);
+    border-bottom: 3px solid var(--ts-azul);
+}
+
+.navbar-ts .navbar-brand {
+    font-weight: 700;
+    color: var(--ts-negro);
+    letter-spacing: -0.4px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-ts .nav-link {
+    color: #333333;
+    font-weight: 500;
+}
+
+.navbar-ts .nav-link:hover,
+.navbar-ts .nav-link.active {
+    color: var(--ts-acento-oscuro);
+}
+
+/* El contador del carrito usa el naranja de la marca aunque Bootstrap lo
+   marque como .text-bg-danger */
+.ts-carrito-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    font-size: 0.68rem;
+    background-color: var(--ts-naranja) !important;
+    color: #fff !important;
+}
+
+/* --------------------------------- Botones ------------------------------- */
+
+/* Botón principal: azul de la marca */
+.btn-ts {
+    background: var(--ts-acento-oscuro);
+    border-color: var(--ts-acento-oscuro);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-ts:hover,
+.btn-ts:focus {
+    background: var(--ts-negro);
+    border-color: var(--ts-negro);
+    color: #fff;
+}
+
+/* Botón secundario: azul claro con texto oscuro */
+.btn-ts-azul {
+    background: var(--ts-azul);
+    border-color: var(--ts-azul);
+    color: var(--ts-negro);
+    font-weight: 600;
+}
+
+.btn-ts-azul:hover {
+    background: var(--ts-azul-oscuro);
+    border-color: var(--ts-azul-oscuro);
+    color: #fff;
+}
+
+/* ---------------------------------- Hero -------------------------------- */
+
+.ts-hero {
+    background: linear-gradient(115deg, #10161d 0%, #1b2430 45%, #2d3947 100%);
+    color: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 14px 32px rgba(16, 22, 29, 0.18);
+}
+
+.ts-hero .badge {
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #10161d !important;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+}
+
+.ts-hero .btn-ts {
+    background: #c41e3a;
+    border-color: #c41e3a;
+    color: #fff;
+}
+
+.ts-hero .btn-ts:hover,
+.ts-hero .btn-ts:focus {
+    background: #9d1830;
+    border-color: #9d1830;
+    color: #fff;
+}
+
+.ts-hero .btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.75);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.ts-hero .btn-outline-light:hover,
+.ts-hero .btn-outline-light:focus {
+    background: #c41e3a;
+    border-color: #c41e3a;
+    color: #fff;
+}
+
+/* Bloque rojo oscuro, en línea con el logotipo */
+.ts-hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(196, 30, 58, 0.9);
+    right: -150px;
+    top: -140px;
+    transform: rotate(22deg);
+    border-radius: 40px;
+}
+
+.ts-hero::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, 0.08);
+    left: -90px;
+    bottom: -110px;
+    transform: rotate(22deg);
+    border-radius: 30px;
+}
+
+/* ----------------------------- Tarjeta producto ------------------------- */
+
+.ts-card {
+    border: 1px solid var(--ts-borde);
+    border-radius: 0.85rem;
+    background: #fff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    height: 100%;
+}
+
+.ts-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(16, 22, 29, 0.15);
+    border-color: var(--ts-azul);
+}
+
+.ts-card-img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0.85rem 0.85rem 0 0;
+    background: var(--ts-azul-suave);
+}
+
+.ts-precio {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ts-negro);
+}
+
+.ts-precio-anterior {
+    font-size: 0.9rem;
+    color: #8c98a8;
+    text-decoration: line-through;
+}
+
+.ts-categoria-pill {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--ts-naranja-oscuro);
+    font-weight: 700;
+}
+
+/* --------------------------- Categorías (portada) ----------------------- */
+
+.ts-categoria-card {
+    background: #fff;
+    border: 1px solid var(--ts-borde);
+    border-radius: 0.85rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    color: var(--ts-negro);
+    transition: all 0.15s ease;
+    display: block;
+    height: 100%;
+}
+
+.ts-categoria-card:hover {
+    border-color: var(--ts-azul);
+    color: var(--ts-azul-oscuro);
+    transform: translateY(-3px);
+}
+
+.ts-categoria-card i {
+    font-size: 1.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--ts-naranja);
+}
+
+/* ------------------------------ Vistos hoy ------------------------------ */
+
+.ts-vistos {
+    background: #fff;
+    border: 1px dashed var(--ts-azul);
+    border-radius: 0.85rem;
+}
+
+.ts-vistos-img {
+    width: 62px;
+    height: 62px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background: var(--ts-azul-suave);
+}
+
+/* -------------------------------- Paneles ------------------------------- */
+
+.ts-panel {
+    background: #fff;
+    border: 1px solid var(--ts-borde);
+    border-radius: 0.85rem;
+}
+
+.ts-indicador {
+    background: #fff;
+    border: 1px solid var(--ts-borde);
+    border-radius: 0.85rem;
+    padding: 1rem 1.15rem;
+    height: 100%;
+}
+
+.ts-indicador .valor {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--ts-negro);
+    line-height: 1.1;
+}
+
+.ts-indicador .etiqueta {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #7e8a99;
+    font-weight: 600;
+}
+
+/* ---------------------------- Pasos del checkout ------------------------ */
+
+.ts-pasos {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+}
+
+.ts-pasos li {
+    flex: 1 1 140px;
+    background: #fff;
+    border: 1px solid var(--ts-borde);
+    border-radius: 0.6rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.85rem;
+    color: #7e8a99;
+    font-weight: 600;
+}
+
+.ts-pasos li.activo {
+    border-color: var(--ts-acento);
+    color: var(--ts-acento-oscuro);
+    background: var(--ts-azul-suave);
+}
+
+.ts-pasos li.listo {
+    color: #1f7a5a;
+    border-color: #b7e4cf;
+    background: #f1fbf6;
+}
+
+/* ------------------------- Métodos de pago (radio) ---------------------- */
+
+.ts-metodo-pago {
+    border: 1px solid var(--ts-borde);
+    border-radius: 0.7rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+.ts-metodo-pago:hover {
+    border-color: var(--ts-acento);
+}
+
+.ts-metodo-pago input:checked ~ .ts-metodo-texto strong {
+    color: var(--ts-acento-oscuro);
+}
+
+.ts-metodo-pago:has(input:checked) {
+    border-color: var(--ts-acento);
+    background: var(--ts-azul-suave);
+}
+
+/* --------------------------------- Footer ------------------------------- */
+
+.ts-footer {
+    background: var(--ts-negro);
+    color: #c4c4c4;
+    border-top: 4px solid var(--ts-naranja);
+}
+
+.ts-footer a {
+    color: #e8e8e8;
+}
+
+.ts-footer a:hover {
+    color: var(--ts-azul-claro);
+}
+
+/* ----------------------------- Panel admin ------------------------------ */
+
+.ts-admin-sidebar {
+    background: var(--ts-negro);
+    min-height: 100%;
+    border-radius: 0.85rem;
+    border-top: 4px solid var(--ts-naranja);
+}
+
+.ts-admin-sidebar .nav-link {
+    color: #cfcfcf;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    padding: 0.55rem 0.85rem;
+}
+
+.ts-admin-sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.ts-admin-sidebar .nav-link.active {
+    background: var(--ts-azul);
+    color: var(--ts-negro);
+}
+
+/* --------------------------------- Varios ------------------------------- */
+
+/* Detalles en naranja: distintivo de descuento y títulos de ofertas */
+.ts-badge-descuento {
+    background-color: var(--ts-naranja);
+    color: #fff;
+}
+
+.ts-texto-naranja { color: var(--ts-naranja); }
+
+/* Bootstrap muestra el <code> en rosado: se ajusta al azul de la marca */
+code { color: var(--ts-azul-oscuro); }
+
+.ts-tabla-limpia > :not(caption) > * > * {
+    padding: 0.75rem 0.85rem;
+    vertical-align: middle;
+}
+
+.ts-agotado {
+    filter: grayscale(0.6);
+    opacity: 0.75;
+}
+
+@media print {
+    .ts-no-imprimir {
+        display: none !important;
+    }
+}

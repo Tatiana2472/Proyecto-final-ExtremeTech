@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 260" width="980" height="260"
+     role="img" aria-label="Extreme Tech">
+
+  <!-- Swoosh superior -->
+  <path d="M120 95 C 320 20, 620 15, 780 65"
+        fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  <path d="M130 108 C 330 40, 610 32, 770 78"
+        fill="none" stroke="#FF4D5E" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- ===================== EXTREME ===================== -->
+  <g font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900"
+     font-style="italic" font-size="92">
+    <text x="20"  y="200" fill="#FF4D5E">E</text>
+    <text x="90"  y="200" fill="#FFFFFF">X</text>
+    <text x="175" y="200" fill="#FFFFFF">T</text>
+    <text x="240" y="200" fill="#FFFFFF">R</text>
+    <text x="315" y="200" fill="#FFFFFF">E</text>
+    <text x="385" y="200" fill="#FFFFFF">M</text>
+    <text x="480" y="200" fill="#FFFFFF">E</text>
+  </g>
+
+  <!-- Barra divisoria -->
+  <rect x="570" y="118" width="8" height="82" transform="skewX(-12)" fill="#FF4D5E"/>
+
+  <!-- ===================== TECH ===================== -->
+  <g font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900"
+     font-style="italic" font-size="92">
+    <text x="610" y="200" fill="#FF4D5E">T</text>
+    <text x="680" y="200" fill="#FF4D5E">E</text>
+    <text x="750" y="200" fill="#FF4D5E">C</text>
+    <text x="830" y="200" fill="#FF4D5E">H</text>
+  </g>
+</svg>

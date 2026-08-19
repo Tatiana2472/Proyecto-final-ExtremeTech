@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" role="img" aria-label="JBL">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7e244b"/>
+      <stop offset="1" stop-color="#491812"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#g)"/>
+  <circle cx="530" cy="70" r="140" fill="#ffffff" opacity="0.06"/>
+  <circle cx="60" cy="410" r="110" fill="#ffffff" opacity="0.05"/>
+  <g>
+    <rect x="200" y="120" width="200" height="215" rx="100" fill="#f4f7fb"/>
+    <rect x="222" y="142" width="156" height="171" rx="85" fill="#1e2530"/>
+    <circle cx="300" cy="228" r="46" fill="none" stroke="#ffffff" stroke-width="7" opacity="0.5"/>
+    <circle cx="300" cy="228" r="24" fill="#ffffff" opacity="0.55"/>
+  </g>
+  <text x="300" y="426" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif"
+        font-size="26" font-weight="600" fill="#ffffff" opacity="0.9">JBL</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" role="img" aria-label="Sin imagen">
+  <rect width="600" height="450" fill="#e9edf3"/>
+  <rect x="180" y="150" width="240" height="150" rx="14" fill="#ffffff"/>
+  <circle cx="248" cy="200" r="20" fill="#c3ccd8"/>
+  <path d="M198 288 l72-72 56 56 40-34 46 50 Z" fill="#c3ccd8"/>
+  <text x="300" y="352" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif"
+        font-size="24" fill="#7b8798">Sin imagen disponible</text>
+</svg>
