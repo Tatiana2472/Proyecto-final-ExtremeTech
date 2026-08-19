@@ -52,8 +52,3 @@ Frontend: HTML5 · CSS3 · Bootstrap 5.3 · JavaScript (Fetch API)
 PDF: barryvdh/laravel-dompdf
 Pruebas: PHPUnit 11
 Control de versiones: Git / GitHub
-6. Autores
-Tatiana
-Li
-Anguar
-Camila
