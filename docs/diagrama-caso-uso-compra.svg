@@ -11,12 +11,12 @@
     Diagrama de casos de uso &#8212; Proceso de compra
   </text>
   <text x="580" y="66" text-anchor="middle" font-size="13" fill="#6b7889">
-    Tienda virtual Take Tech CR &#183; Tecnolog&#237;as y Sistemas Web II (ITI-523)
+    Tienda virtual ExtremTech &#183; Tecnolog&#237;as y Sistemas Web II (ITI-523)
   </text>
   <rect x="236" y="96" width="636" height="668" rx="14"
         fill="#f7f9fc" stroke="#c9d3e0" stroke-width="2"/>
   <text x="554" y="122" text-anchor="middle"
-        font-size="14" font-weight="700" fill="#111111">Sistema: Tienda virtual Take Tech CR</text>
+        font-size="14" font-weight="700" fill="#111111">Sistema: Tienda virtual ExtremTech</text>
   <ellipse cx="392" cy="152" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
   <text x="392" y="157" text-anchor="middle" font-size="13" fill="#23303f">Registrarse / Iniciar sesión</text>
   <ellipse cx="392" cy="240" rx="142" ry="34" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>

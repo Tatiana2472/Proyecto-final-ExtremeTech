@@ -47,7 +47,7 @@ buena conducta:
 
 ## 1.b Cuando la tienda bloquea el acceso: Cloudflare
 
-Al probar `taketechcr.com` la respuesta no fue JSON sino una página de
+Al probar `extremtech.cr` la respuesta no fue JSON sino una página de
 desafío de **Cloudflare** (`/cdn-cgi/challenge-platform/`). Es decir: el
 sitio tiene protección anti-bot activa.
 

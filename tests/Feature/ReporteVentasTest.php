@@ -23,7 +23,7 @@ class ReporteVentasTest extends TestCase
         parent::setUp();
 
         $this->admin = User::factory()->administrador()->create([
-            'name' => 'Administrador Take Tech CR',
+            'name' => 'Administrador ExtremTech',
         ]);
     }
 

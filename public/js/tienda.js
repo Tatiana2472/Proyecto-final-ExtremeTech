@@ -1,5 +1,5 @@
 /* =========================================================================
-   Take Tech CR - interacciones del lado del cliente
+    ExtremTech - interacciones del lado del cliente
    -------------------------------------------------------------------------
    Ejemplo de comunicación ASÍNCRONA (sesión 11): en lugar de recargar toda la
    página, se envía la petición al servidor con fetch() y se actualiza solo la

@@ -60,7 +60,7 @@ sudo apt install certbot python3-certbot-apache
 ```
 
 ```bash
-sudo certbot --apache -d taketech.example.com -d www.taketech.example.com
+sudo certbot --apache -d extremtech.example.com -d www.extremtech.example.com
 ```
 
 Certbot pide un correo, configura el VirtualHost de HTTPS, instala el certificado y crea
@@ -84,47 +84,47 @@ mostrará una advertencia (es normal: nadie confía en un certificado que uno mi
 1. Genere el certificado con OpenSSL, que viene incluido en XAMPP:
 
 ```bash
-"C:/xampp/apache/bin/openssl.exe" req -x509 -nodes -days 365 -newkey rsa:2048 -keyout "C:/xampp/apache/conf/ssl.key/taketech.key" -out "C:/xampp/apache/conf/ssl.crt/taketech.crt" -subj "/C=CR/ST=San Jose/L=San Jose/O=Take Tech CR/CN=taketech.test"
+"C:/xampp/apache/bin/openssl.exe" req -x509 -nodes -days 365 -newkey rsa:2048 -keyout "C:/xampp/apache/conf/ssl.key/extremtech.key" -out "C:/xampp/apache/conf/ssl.crt/extremtech.crt" -subj "/C=CR/ST=San Jose/L=San Jose/O=ExtremTech/CN=extremtech.test"
 ```
 
 2. Agregue el dominio de prueba a `C:\Windows\System32\drivers\etc\hosts`
    (hay que abrir el archivo como administrador):
 
 ```
-127.0.0.1    taketech.test
+127.0.0.1    extremtech.test
 ```
 
 3. En `C:\xampp\apache\conf\extra\httpd-vhosts.conf` agregue:
 
 ```apache
 <VirtualHost *:80>
-    ServerName taketech.test
+    ServerName extremtech.test
     # Todo el tráfico HTTP se manda a HTTPS
-    Redirect permanent / https://taketech.test/
+    Redirect permanent / https://extremtech.test/
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName taketech.test
-    DocumentRoot "C:/xampp/htdocs/taketech/public"
+    ServerName extremtech.test
+    DocumentRoot "C:/xampp/htdocs/extremtech/public"
 
     SSLEngine on
-    SSLCertificateFile "conf/ssl.crt/taketech.crt"
-    SSLCertificateKeyFile "conf/ssl.key/taketech.key"
+    SSLCertificateFile "conf/ssl.crt/extremtech.crt"
+    SSLCertificateKeyFile "conf/ssl.key/extremtech.key"
 
-    <Directory "C:/xampp/htdocs/taketech/public">
+    <Directory "C:/xampp/htdocs/extremtech/public">
         AllowOverride All
         Require all granted
     </Directory>
 
-    ErrorLog "logs/taketech-error.log"
-    CustomLog "logs/taketech-access.log" common
+    ErrorLog "logs/extremtech-error.log"
+    CustomLog "logs/extremtech-access.log" common
 </VirtualHost>
 ```
 
 4. En `.env` ponga:
 
 ```
-APP_URL=https://taketech.test
+APP_URL=https://extremtech.test
 TIENDA_FORZAR_HTTPS=true
 SESSION_SECURE_COOKIE=true
 ```
@@ -164,7 +164,7 @@ conservar SQLite (que es lo que exige el documento) y dan HTTPS automáticamente
 4. En **Variables**, agregue como mínimo:
 
 ```
-APP_NAME=Take Tech CR
+APP_NAME=ExtremTech
 APP_ENV=production
 APP_DEBUG=false
 APP_KEY=            # pegue aquí la salida de: php artisan key:generate --show
@@ -209,13 +209,13 @@ php artisan config:cache && php artisan route:cache && php artisan view:cache
 El proyecto usa Git. Para publicarlo:
 
 1. Cree un repositorio vacío en <https://github.com/new>, por ejemplo
-   `proyecto-final-taketech`. **No** marque la opción de agregar README, porque el
+    `proyecto-final-extremtech`. **No** marque la opción de agregar README, porque el
    proyecto ya tiene uno.
 
 2. Conéctelo y súbalo:
 
 ```bash
-git remote add origin https://github.com/USUARIO/proyecto-final-taketech.git
+git remote add origin https://github.com/USUARIO/proyecto-final-extremtech.git
 ```
 
 ```bash

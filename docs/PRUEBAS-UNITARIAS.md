@@ -1,4 +1,4 @@
-# Documento de pruebas — Take Tech CR
+# Documento de pruebas — ExtremTech
 
 Entregable «Pruebas unitarias para verificar la funcionalidad del sistema».
 

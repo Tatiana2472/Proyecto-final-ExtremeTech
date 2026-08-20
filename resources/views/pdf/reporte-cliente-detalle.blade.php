@@ -10,7 +10,7 @@
 <table class="encabezado">
     <tr>
         <td style="width: 58%;">
-            <div class="marca">take<span>tech</span> <span class="marca-cr">CR</span></div>
+            <div class="marca">Extrem<span>Tech</span></div>
             <div class="lema-marca">LO MEJOR EN TECNOLOGÍA</div>
             <div class="pequeno gris">
                 {{ config('tienda.direccion') }} · Cédula jurídica {{ config('tienda.cedula_juridica') }}

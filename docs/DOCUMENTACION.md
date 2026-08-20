@@ -1,4 +1,4 @@
-# Documentación detallada — Take Tech CR
+# Documentación detallada — ExtremTech
 
 Curso: Tecnologías y Sistemas Web II (ITI-523) · Proyecto final
 
@@ -23,7 +23,7 @@ Curso: Tecnologías y Sistemas Web II (ITI-523) · Proyecto final
 
 ## 1. Descripción del proyecto
 
-**Take Tech CR** es una tienda virtual (ecommerce del tipo **B2C**, tienda online propia,
+**ExtremTech** es una tienda virtual (ecommerce del tipo **B2C**, tienda online propia,
 según la clasificación de la sesión 11) que vende productos de tecnología en Costa Rica:
 laptops, celulares y tablets, audio, gaming, monitores y accesorios.
 
@@ -106,9 +106,9 @@ Abra <http://localhost:8000>.
 
 **Opción B — Apache con XAMPP:**
 
-1. Copie el proyecto en `C:\xampp\htdocs\taketech`.
+1. Copie el proyecto en `C:\xampp\htdocs\extremtech`.
 2. Configure un VirtualHost cuyo `DocumentRoot` apunte a
-   `C:\xampp\htdocs\taketech\public` (nunca a la raíz del proyecto: `public/` es el
+  `C:\xampp\htdocs\extremtech\public` (nunca a la raíz del proyecto: `public/` es el
    único directorio que debe quedar expuesto).
 3. Inicie Apache desde el panel de control de XAMPP.
 
@@ -142,7 +142,7 @@ Instale en VS Code la extensión **SQLite** de *alexcvzz*, abra la paleta de com
 
 ### 3.2 Como administrador
 
-Ingrese con `admin@taketech.cr` / `Admin1234*`. Será enviado directamente a `/admin`.
+Ingrese con `admin@extremtech.cr` / `Admin1234*`. Será enviado directamente a `/admin`.
 
 | Sección | Qué permite |
 |---|---|
@@ -459,7 +459,7 @@ MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=su-correo@gmail.com
 MAIL_PASSWORD=su-contrasena-de-aplicacion
-MAIL_FROM_ADDRESS=ventas@taketech.cr
+MAIL_FROM_ADDRESS=ventas@extremtech.cr
 ```
 
 ## 9.10 Idioma de la aplicación
@@ -506,7 +506,7 @@ Todos los parámetros de negocio están en `config/tienda.php` y se pueden cambi
 
 | Variable | Por omisión | Qué controla |
 |---|---|---|
-| `TIENDA_NOMBRE` | Take Tech CR | Nombre de la tienda |
+| `TIENDA_NOMBRE` | ExtremTech | Nombre de la tienda |
 | `TIENDA_IMPUESTO_TASA` | `0.13` | Tarifa del IVA |
 | `TIENDA_ENVIO_COSTO` | `2900` | Costo de envío |
 | `TIENDA_ENVIO_GRATIS_DESDE` | `75000` | Subtotal a partir del cual el envío es gratis |

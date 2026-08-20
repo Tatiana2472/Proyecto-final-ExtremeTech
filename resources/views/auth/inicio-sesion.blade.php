@@ -64,7 +64,7 @@
                     <strong class="d-block mb-2"><i class="bi bi-info-circle me-1"></i>Cuentas de demostración</strong>
                     <div class="d-flex justify-content-between">
                         <span>Administrador</span>
-                        <code>admin@taketech.cr / Admin1234*</code>
+                        <code>admin@extremtech.cr / Admin1234*</code>
                     </div>
                     <div class="d-flex justify-content-between">
                         <span>Cliente</span>

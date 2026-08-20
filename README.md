@@ -1,8 +1,6 @@
-ExtremeTech — Tienda virtual
+ExtremTech — Tienda virtual
 
 Curso: Tecnologías y Sistemas Web II (ITI-523) Proyecto final · Valor 25% · Docente: Ing. Milena Vargas Blanco
-
-Integrantes: Tatiana, Li, Anguar, Camila
 
 Tienda virtual de productos de tecnología desarrollada con PHP + Laravel 12, SQLite como base de datos y Bootstrap 5 en el frontend. Permite a un visitante navegar el catálogo, registrarse, armar su carrito, pagar en línea y dar seguimiento a sus pedidos; y le da a la administración un panel con mantenimiento del catálogo, gestión de pedidos y reportes de ventas en PDF.
 
@@ -32,7 +30,7 @@ Abra http://localhost:8000. Si prefiere Apache con XAMPP, apunte el DocumentRoot
 
 3. Cuentas de demostración
 Rol	Correo	Contraseña
-Administrador	admin@extremetech.cr	Admin1234*
+Administrador	admin@extremtech.cr	Admin1234*
 Cliente	maria@example.com	Cliente1234*
 
 La pasarela de pago trabaja en modo simulado (no se envían datos a ningún banco real). Con la tarjeta 4111 1111 1111 1111 el pago siempre se aprueba.

@@ -13,9 +13,9 @@
 
 return [
 
-    'nombre'  => env('TIENDA_NOMBRE', 'ExtremeTech'),
+    'nombre'  => env('TIENDA_NOMBRE', 'ExtremTech'),
     'lema'    => env('TIENDA_LEMA', 'Tecnología que rinde, a precio que conviene'),
-    'correo'  => env('TIENDA_CORREO', 'ventas@extremetechcr.com'),
+    'correo'  => env('TIENDA_CORREO', 'ventas@extremtech.cr'),
     'telefono' => env('TIENDA_TELEFONO', '+506 4350-2222'),
     'direccion' => env('TIENDA_DIRECCION', 'Centro Comercial Plaza Heredia, Local 4E, Heredia, Costa Rica'),
     /*
