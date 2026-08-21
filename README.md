@@ -39,9 +39,7 @@ La pasarela de pago trabaja en modo simulado (no se envían datos a ningún banc
 bash
 php artisan test
 
-210 pruebas / 639 aserciones, todas en verde.
-
-Las pruebas corren contra una base SQLite en memoria, por lo que no modifican la base de datos de desarrollo. Los correos (confirmación de compra y recuperación de contraseña) no se envían de verdad en desarrollo: quedan escritos en storage/logs/laravel.log.
+El proyecto cuenta con 225 pruebas automatizadas (58 unitarias y 167 de integración/funcionales), con 668 aserciones en total, ejecutadas con PHPUnit 11 sobre una base de datos SQLite en memoria (no afectan los datos de desarrollo). 
 
 5. Tecnologías utilizadas
 Backend: PHP 8.2 · Laravel 12 (MVC, Eloquent ORM, migraciones, Blade)
