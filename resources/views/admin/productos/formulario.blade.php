@@ -139,9 +139,9 @@
                     @endif
 
                     <input type="file" class="form-control @error('imagen') is-invalid @enderror"
-                           id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp,image/svg+xml">
+                           id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp">
                     @error('imagen') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    <div class="form-text">JPG, PNG, WEBP o SVG. Máximo 2 MB.</div>
+                    <div class="form-text">JPG, PNG o WEBP. Máximo 2 MB.</div>
                 </div>
 
                 <div class="d-grid gap-2">

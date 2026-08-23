@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ConsecutivoAnual;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Invoice extends Model
 {
-    use HasFactory;
+    use ConsecutivoAnual, HasFactory;
 
     protected $fillable = [
         'order_id', 'user_id', 'numero_factura', 'fecha_emision',
@@ -43,6 +44,6 @@ class Invoice extends Model
     /** Consecutivo de factura, por ejemplo FAC-2026-000014. */
     public static function siguienteNumero(): string
     {
-        return sprintf('FAC-%s-%06d', now()->year, static::max('id') + 1);
+        return static::siguienteConsecutivoAnual('numero_factura', 'FAC');
     }
 }

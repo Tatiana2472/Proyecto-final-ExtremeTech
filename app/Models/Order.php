@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ConsecutivoAnual;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
  */
 class Order extends Model
 {
-    use HasFactory;
+    use ConsecutivoAnual, HasFactory;
 
     protected $fillable = [
         'user_id', 'numero_pedido', 'numero_seguimiento', 'estado',
@@ -93,9 +94,7 @@ class Order extends Model
     /** Consecutivo del pedido, por ejemplo PED-2026-000014. */
     public static function siguienteNumeroPedido(): string
     {
-        $consecutivo = static::max('id') + 1;
-
-        return sprintf('PED-%s-%06d', now()->year, $consecutivo);
+        return static::siguienteConsecutivoAnual('numero_pedido', 'PED');
     }
 
     /**

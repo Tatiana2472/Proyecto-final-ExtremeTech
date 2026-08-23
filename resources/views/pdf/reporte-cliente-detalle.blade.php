@@ -10,10 +10,12 @@
 <table class="encabezado">
     <tr>
         <td style="width: 58%;">
-            <div class="marca">Extrem<span>Tech</span></div>
-            <div class="lema-marca">LO MEJOR EN TECNOLOGÍA</div>
-            <div class="pequeno gris">
-                {{ config('tienda.direccion') }} · Cédula jurídica {{ config('tienda.cedula_juridica') }}
+            <div>
+                <img src="{{ public_path('img/logo-extreme-tech-real.svg') }}" alt="{{ config('tienda.nombre') }}" style="height:48px;">
+            </div>
+            <div class="pequeno gris" style="margin-top:6px;">
+                {{ config('tienda.direccion') }}<br>
+                {{ config('tienda.telefono') }} · {{ config('tienda.correo') }}
             </div>
         </td>
         <td class="derecha">

@@ -31,7 +31,13 @@ class ProductoRequest extends FormRequest
             'existencias'     => ['required', 'integer', 'min:0', 'max:100000'],
             'destacado'       => ['nullable', 'boolean'],
             'activo'          => ['nullable', 'boolean'],
-            'imagen'          => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+            // Sin SVG a propósito: la regla «image» de Laravel lo excluye salvo
+            // que se pase image:allow_svg, así que el «svg» que había acá nunca
+            // llegaba a aplicarse y la subida fallaba con un mensaje confuso.
+            // Tampoco conviene habilitarlo: un SVG servido desde public/storage
+            // puede llevar <script> y se ejecutaría en el dominio de la tienda
+            // si alguien abre su URL directamente.
+            'imagen'          => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }
 

@@ -31,6 +31,8 @@ class CarritoController extends Controller
     /** Pantalla del carrito con el cálculo automático del total. */
     public function mostrar(): View
     {
+        $this->avisarSiCambiaronLosPrecios();
+
         return view('carrito.mostrar', [
             'lineas'  => $this->carrito->lineas(),
             'totales' => $this->carrito->totales(),
@@ -98,6 +100,26 @@ class CarritoController extends Controller
         return response()->json([
             'cantidad' => $this->carrito->cantidadArticulos(),
         ]);
+    }
+
+    /**
+     * Pone al día los precios del carrito y, si alguno cambió, lo advierte.
+     *
+     * Se usa session()->now() y no flash() porque el aviso corresponde a esta
+     * misma pantalla: con flash() volvería a aparecer en la página siguiente.
+     */
+    protected function avisarSiCambiaronLosPrecios(): void
+    {
+        $cambiadas = $this->carrito->sincronizarPrecios();
+
+        if ($cambiadas->isEmpty()) {
+            return;
+        }
+
+        session()->now('aviso', $cambiadas->count() === 1
+            ? 'El precio de «'.$cambiadas->first()->producto->nombre.'» cambió desde que lo agregó. Su carrito ya muestra el precio actual.'
+            : 'El precio de '.$cambiadas->count().' de sus productos cambió desde que los agregó. Su carrito ya muestra los precios actuales.'
+        );
     }
 
     /**

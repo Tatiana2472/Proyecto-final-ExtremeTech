@@ -117,6 +117,37 @@ class CarritoService
         $this->buscarLinea($lineaId)->delete();
     }
 
+    /**
+     * Pone al día el precio de las líneas contra el precio actual del catálogo.
+     *
+     * El precio se copia a la línea en el momento de agregar el producto. Si
+     * el administrador lo cambia después, el carrito seguiría mostrando el
+     * precio viejo mientras que la compra se cobra con el nuevo (PedidoService
+     * siempre recalcula contra la base de datos). Para que el cliente nunca
+     * vea un total distinto del que se le va a cobrar, acá se actualizan las
+     * líneas desfasadas y se devuelven para poder avisarle.
+     *
+     * @return Collection<int, CartItem> Líneas cuyo precio cambió.
+     */
+    public function sincronizarPrecios(): Collection
+    {
+        $desfasadas = $this->lineas()->filter(function (CartItem $linea) {
+            if (! $linea->producto) {
+                return false;
+            }
+
+            // Comparación con tolerancia de un céntimo: los montos vienen del
+            // cast «decimal:2» y no conviene compararlos como flotantes.
+            return abs((float) $linea->precio_unitario - (float) $linea->producto->precio) >= 0.01;
+        });
+
+        foreach ($desfasadas as $linea) {
+            $linea->update(['precio_unitario' => $linea->producto->precio]);
+        }
+
+        return $desfasadas->values();
+    }
+
     /** Vacía por completo el carrito actual. */
     public function vaciar(): void
     {

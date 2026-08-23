@@ -5,8 +5,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Líneas del carrito. Guarda el precio unitario del momento en que se agregó
- * el producto, de modo que un cambio de precio no altere un carrito abierto.
+ * Líneas del carrito. Guarda el precio unitario con que se mostró el producto
+ * al agregarlo; si el catálogo cambia de precio, CarritoService::sincronizarPrecios()
+ * pone la línea al día y se le advierte al cliente antes de cobrarle, para que
+ * el total en pantalla y el total cobrado nunca difieran.
  */
 return new class extends Migration
 {

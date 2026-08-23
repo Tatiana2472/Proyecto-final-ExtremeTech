@@ -32,6 +32,11 @@ class CheckoutController extends Controller
     /** Formulario de datos de envío y de pago. */
     public function mostrar(Request $peticion): View|RedirectResponse
     {
+        // Antes de pedir los datos de pago se ponen al día los precios, para
+        // que el total que el cliente autoriza sea exactamente el que se le
+        // va a cobrar.
+        $this->carrito->sincronizarPrecios();
+
         $lineas = $this->carrito->lineas();
 
         if ($lineas->isEmpty()) {
@@ -65,7 +70,19 @@ class CheckoutController extends Controller
                 datosPago: $peticion->datosPago(),
             );
         } catch (PagoRechazadoException $e) {
-            // El pago falló: el pedido se revirtió por completo.
+            // El pago falló: el pedido se revirtió por completo y con él la
+            // fila de payments, así que del intento no queda ningún rastro en
+            // la base. Se anota en el log para poder revisar después cuántos
+            // pagos se rechazan y por qué. No se registra ningún dato de la
+            // tarjeta: ResultadoPago::rechazado() no los lleva.
+            Log::warning('Pago rechazado en el checkout', [
+                'usuario' => $peticion->user()->id,
+                'metodo'  => $e->resultado->metodo,
+                'monto'   => $e->resultado->monto,
+                'moneda'  => $e->resultado->moneda,
+                'motivo'  => $e->resultado->mensaje,
+            ]);
+
             return back()
                 ->withInput($peticion->except($this->camposSensibles()))
                 ->with('error', 'No se pudo procesar el pago: '.$e->getMessage());

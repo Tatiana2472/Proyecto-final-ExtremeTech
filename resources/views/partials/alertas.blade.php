@@ -16,6 +16,15 @@
     </div>
 @endif
 
+{{-- Advertencia: algo cambió sin ser un error (por ejemplo, un precio) --}}
+@if (session('aviso'))
+    <div class="alert alert-warning alert-dismissible fade show d-flex align-items-start" role="alert">
+        <i class="bi bi-info-circle-fill me-2 mt-1"></i>
+        <div>{{ session('aviso') }}</div>
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+@endif
+
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <div class="d-flex align-items-start">

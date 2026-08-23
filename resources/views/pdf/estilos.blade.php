@@ -20,32 +20,6 @@
 
     .encabezado td { vertical-align: top; }
 
-    .marca { font-size: 20px; font-weight: bold; color: #10161d; letter-spacing: -0.5px; }
-    .marca span { color: #0277b5; }
-
-    /* Distintivo naranja "CR" del logotipo */
-    .marca .marca-cr {
-        display: inline-block;
-        background: #ff7a1a;
-        color: #ffffff;
-        font-size: 10px;
-        font-weight: bold;
-        padding: 1px 5px;
-        vertical-align: middle;
-    }
-
-    /* Banderola azul del logotipo */
-    .lema-marca {
-        display: inline-block;
-        background: #0ea5e9;
-        color: #ffffff;
-        font-size: 8px;
-        font-weight: bold;
-        letter-spacing: 0.6px;
-        padding: 2px 8px;
-        margin: 2px 0 4px;
-    }
-
     .gris { color: #6b7889; }
     .pequeno { font-size: 9px; }
     .derecha { text-align: right; }

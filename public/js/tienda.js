@@ -33,12 +33,29 @@
         const aviso = document.createElement('div');
         aviso.className = `toast align-items-center text-bg-${tipo} border-0`;
         aviso.setAttribute('role', 'alert');
-        aviso.innerHTML = `
-            <div class="d-flex">
-                <div class="toast-body">${mensaje}</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                        data-bs-dismiss="toast" aria-label="Cerrar"></button>
-            </div>`;
+
+        const fila = document.createElement('div');
+        fila.className = 'd-flex';
+
+        // El aviso se arma con nodos y el texto se asigna con textContent, NO
+        // con innerHTML: el mensaje viene del servidor e incluye el nombre del
+        // producto, que no es texto de confianza (el catálogo se puede
+        // importar de una tienda externa con `php artisan catalogo:importar`).
+        // Con innerHTML, un nombre con etiquetas HTML se ejecutaría en el
+        // navegador de cualquier cliente que agregara ese producto al carrito.
+        // Blade ya hace lo equivalente con {{ }} en el resto de la tienda.
+        const cuerpo = document.createElement('div');
+        cuerpo.className = 'toast-body';
+        cuerpo.textContent = mensaje;
+
+        const cerrar = document.createElement('button');
+        cerrar.type = 'button';
+        cerrar.className = 'btn-close btn-close-white me-2 m-auto';
+        cerrar.dataset.bsDismiss = 'toast';
+        cerrar.setAttribute('aria-label', 'Cerrar');
+
+        fila.append(cuerpo, cerrar);
+        aviso.append(fila);
 
         contenedorAvisos().appendChild(aviso);
 

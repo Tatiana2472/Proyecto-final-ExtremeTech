@@ -3,12 +3,14 @@
 namespace App\Services;
 
 use App\Exceptions\PagoRechazadoException;
+use App\Models\CartItem;
 use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\Pagos\GestorPasarelas;
 use App\Services\Pagos\SolicitudPago;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
@@ -40,6 +42,17 @@ class PedidoService
 
         if ($lineas->isEmpty()) {
             throw new RuntimeException('Su carrito está vacío.');
+        }
+
+        // Si el catálogo cambió de precio mientras el carrito estaba abierto,
+        // se actualiza el carrito y se detiene la compra. El cobro se calcula
+        // siempre con el precio actual (más abajo), así que continuar sin
+        // avisar significaría cobrarle al cliente un total distinto del que
+        // vio en pantalla.
+        $reprecificadas = $this->carrito->sincronizarPrecios();
+
+        if ($reprecificadas->isNotEmpty()) {
+            throw new RuntimeException($this->mensajeCambioDePrecio($reprecificadas));
         }
 
         // La pasarela se resuelve antes de abrir la transacción para que un
@@ -117,6 +130,14 @@ class PedidoService
             }
 
             // 5. Cobro con la pasarela seleccionada.
+            //
+            // OJO al integrar una pasarela REAL: este cobro ocurre dentro de la
+            // transacción. Con el modo simulado no hay problema, pero contra un
+            // banco de verdad la llamada sale por la red y, si el commit fallara
+            // después de que el cobro se aprobó, el cliente quedaría pagado y sin
+            // pedido. Al cambiar el cuerpo de procesar() por una llamada HTTP hay
+            // que sacar el cobro de la transacción: crear el pedido, confirmar,
+            // cobrar fuera, y actualizar el estado en una segunda transacción.
             $resultado = $pasarela->procesar(new SolicitudPago(
                 monto: $totales->total,
                 moneda: (string) config('tienda.moneda.codigo', 'CRC'),
@@ -145,6 +166,25 @@ class PedidoService
 
             return $pedido->fresh(['lineas', 'factura', 'pago']);
         });
+    }
+
+    /**
+     * Mensaje que se le muestra al cliente cuando el precio de algo que tenía
+     * en el carrito cambió antes de confirmar la compra.
+     *
+     * @param  Collection<int, CartItem>  $lineas
+     */
+    protected function mensajeCambioDePrecio(Collection $lineas): string
+    {
+        $productos = $lineas
+            ->map(fn (CartItem $linea) => '«'.$linea->producto->nombre.'»')
+            ->implode(', ');
+
+        return sprintf(
+            'El precio de %s cambió mientras usted compraba. Su carrito ya muestra el '
+            .'precio actualizado: revise el nuevo total y confirme la compra de nuevo.',
+            $productos
+        );
     }
 
     /** Crea la factura (comprobante) asociada al pedido pagado. */

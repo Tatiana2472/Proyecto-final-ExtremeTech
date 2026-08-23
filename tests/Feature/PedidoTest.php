@@ -189,4 +189,62 @@ class PedidoTest extends TestCase
             ->get(route('pedidos.factura', $pedido))
             ->assertNotFound();
     }
+
+    /* ==================================================================
+     | Numeración consecutiva de pedidos y facturas
+     | ================================================================ */
+
+    public function test_la_numeracion_arranca_en_uno_y_avanza(): void
+    {
+        $usuario = User::factory()->create();
+
+        $this->assertSame('PED-'.now()->year.'-000001', Order::siguienteNumeroPedido());
+        $this->assertSame('FAC-'.now()->year.'-000001', Invoice::siguienteNumero());
+
+        $this->pedidoDe($usuario, ['numero_pedido' => 'PED-'.now()->year.'-000001']);
+
+        $this->assertSame('PED-'.now()->year.'-000002', Order::siguienteNumeroPedido());
+        $this->assertSame('FAC-'.now()->year.'-000002', Invoice::siguienteNumero());
+    }
+
+    public function test_no_devuelve_un_numero_que_ya_esta_en_uso(): void
+    {
+        $usuario = User::factory()->create();
+        $anio    = now()->year;
+
+        // El consecutivo calculado ya existe (por ejemplo, porque otra compra
+        // simultánea lo tomó). Debe saltarlo en lugar de romper el índice único.
+        $this->pedidoDe($usuario, ['numero_pedido' => "PED-{$anio}-000001"]);
+        $this->pedidoDe($usuario, ['numero_pedido' => "PED-{$anio}-000002"]);
+
+        $this->assertSame("PED-{$anio}-000003", Order::siguienteNumeroPedido());
+    }
+
+    public function test_la_numeracion_reinicia_cada_ano(): void
+    {
+        $usuario = User::factory()->create();
+
+        // Pedido del año pasado: no debe arrastrar el consecutivo al año nuevo.
+        $this->pedidoDe($usuario, [
+            'numero_pedido' => 'PED-'.(now()->year - 1).'-000042',
+            'fecha_compra'  => now()->subYear(),
+        ]);
+
+        $this->assertSame('PED-'.now()->year.'-000001', Order::siguienteNumeroPedido());
+    }
+
+    public function test_dos_compras_seguidas_no_repiten_el_numero_de_pedido(): void
+    {
+        $usuario = User::factory()->create();
+
+        // Antes esto se calculaba con max('id') + 1 y podía repetirse.
+        $primero = Order::siguienteNumeroPedido();
+        $this->pedidoDe($usuario, ['numero_pedido' => $primero]);
+
+        $segundo = Order::siguienteNumeroPedido();
+        $this->pedidoDe($usuario, ['numero_pedido' => $segundo]);
+
+        $this->assertNotSame($primero, $segundo);
+        $this->assertSame(2, Order::whereIn('numero_pedido', [$primero, $segundo])->count());
+    }
 }

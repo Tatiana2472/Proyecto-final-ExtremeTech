@@ -6,7 +6,9 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use App\Services\CarritoService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 /**
@@ -279,6 +281,25 @@ class CheckoutTest extends TestCase
         $this->assertDatabaseCount('cart_items', 1);
     }
 
+    public function test_el_rechazo_queda_registrado_en_el_log(): void
+    {
+        $this->conCarrito(precio: 20000, cantidad: 2);
+
+        Log::shouldReceive('warning')
+            ->once()
+            ->withArgs(function (string $mensaje, array $contexto) {
+                return $mensaje === 'Pago rechazado en el checkout'
+                    && $contexto['metodo'] === 'tarjeta'
+                    && $contexto['motivo'] === 'Tarjeta declinada por el banco emisor.'
+                    // Del rechazo no se registra ningún dato de la tarjeta.
+                    && ! array_intersect_key($contexto, array_flip(['numero', 'cvv', 'tarjeta_ultimos4']));
+            });
+
+        $this->actingAs($this->cliente)->post(route('checkout.procesar'), $this->datos([
+            'numero_tarjeta' => '4000 0000 0000 0002',
+        ]))->assertSessionHas('error');
+    }
+
     public function test_si_paypal_rechaza_el_pago_no_queda_pedido(): void
     {
         $this->conCarrito();
@@ -410,16 +431,84 @@ class CheckoutTest extends TestCase
 
     public function test_el_precio_usado_es_el_del_catalogo_no_el_del_carrito(): void
     {
-        $producto = $this->conCarrito(precio: 20000, cantidad: 1);
+        $this->conCarrito(precio: 20000, cantidad: 1);
 
         // Alguien manipula el precio guardado en la línea del carrito.
         CartItem::query()->update(['precio_unitario' => 1]);
 
+        // La compra se detiene: el carrito estaba mostrando un precio que no
+        // corresponde al del catálogo.
+        $this->actingAs($this->cliente)
+            ->post(route('checkout.procesar'), $this->datos())
+            ->assertSessionHas('error');
+
+        $this->assertSame(0, Order::count());
+
+        // La línea quedó corregida con el precio real del catálogo, así que al
+        // reintentar se cobra ese precio y nunca el manipulado.
+        $this->assertSame('20000.00', CartItem::firstOrFail()->precio_unitario);
+
+        $this->actingAs($this->cliente)->post(route('checkout.procesar'), $this->datos());
+
+        $this->assertSame('20000.00', Order::firstOrFail()->subtotal);
+    }
+
+    /* ==================================================================
+     | Cambios de precio con el carrito abierto
+     | ================================================================ */
+
+    public function test_no_cobra_un_total_distinto_del_que_muestra_el_carrito(): void
+    {
+        $producto = $this->conCarrito(precio: 100000, cantidad: 1);
+
+        $totalMostrado = app(CarritoService::class)->totales()->total;
+
+        // El administrador sube el precio mientras el carrito sigue abierto.
+        $producto->update(['precio' => 200000]);
+
+        $this->actingAs($this->cliente)
+            ->post(route('checkout.procesar'), $this->datos())
+            ->assertSessionHas('error');
+
+        // Antes de este arreglo se creaba el pedido cobrando el doble de lo
+        // que el cliente vio en pantalla.
+        $this->assertSame(0, Order::count());
+        $this->assertSame(113000.0, $totalMostrado);
+    }
+
+    public function test_tras_el_aviso_la_compra_se_completa_con_el_precio_nuevo(): void
+    {
+        $producto = $this->conCarrito(precio: 100000, cantidad: 1);
+
+        $producto->update(['precio' => 200000]);
+
+        // Primer intento: se detiene y el carrito se pone al día.
+        $this->actingAs($this->cliente)->post(route('checkout.procesar'), $this->datos());
+
+        // El carrito ya muestra el total nuevo, que es el que se cobrará.
+        $this->assertSame(226000.0, app(CarritoService::class)->totales()->total);
+
+        // Segundo intento: el cliente confirma el total que está viendo.
         $this->actingAs($this->cliente)->post(route('checkout.procesar'), $this->datos());
 
         $pedido = Order::firstOrFail();
 
-        // El servidor volvió a leer el precio real del producto.
-        $this->assertSame('20000.00', $pedido->subtotal);
+        $this->assertSame('200000.00', $pedido->subtotal);
+        $this->assertSame('226000.00', $pedido->total);
+    }
+
+    public function test_la_pantalla_del_carrito_avisa_cuando_un_precio_cambio(): void
+    {
+        $producto = $this->conCarrito(precio: 100000, cantidad: 1);
+
+        $producto->update(['precio' => 200000]);
+
+        $this->actingAs($this->cliente)
+            ->get(route('carrito.mostrar'))
+            ->assertOk()
+            ->assertSee('cambió desde que lo agregó', false);
+
+        // El precio de la línea quedó al día tras visitar el carrito.
+        $this->assertSame('200000.00', CartItem::firstOrFail()->precio_unitario);
     }
 }

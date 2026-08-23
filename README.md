@@ -19,8 +19,11 @@ composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate:fresh --seed
+php artisan storage:link
 
-El último comando crea database/database.sqlite con las tablas y carga datos de demostración (categorías, productos, usuarios e historial de ventas).
+migrate:fresh --seed crea database/database.sqlite con las tablas y carga datos de demostración (categorías, productos, usuarios e historial de ventas).
+
+storage:link crea el enlace public/storage, necesario para que se vean las imágenes que el administrador sube desde el panel (se guardan en storage/app/public/). Sin este paso las fotos de los productos nuevos dan error 404.
 
 Ejecutar la aplicación
 bash
@@ -39,7 +42,7 @@ La pasarela de pago trabaja en modo simulado (no se envían datos a ningún banc
 bash
 php artisan test
 
-El proyecto cuenta con 225 pruebas automatizadas (58 unitarias y 167 de integración/funcionales), con 668 aserciones en total, ejecutadas con PHPUnit 11 sobre una base de datos SQLite en memoria (no afectan los datos de desarrollo). 
+El proyecto cuenta con 245 pruebas automatizadas (58 unitarias y 187 de integración/funcionales), con 721 aserciones en total, ejecutadas con PHPUnit 11 sobre una base de datos SQLite en memoria (no afectan los datos de desarrollo). 
 
 5. Tecnologías utilizadas
 Backend: PHP 8.2 · Laravel 12 (MVC, Eloquent ORM, migraciones, Blade)
