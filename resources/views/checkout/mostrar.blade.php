@@ -13,7 +13,7 @@
     <h1 class="h3 mb-4"><i class="bi bi-lock-fill me-2"></i>Finalizar compra</h1>
 
     {{-- data-un-solo-envio evita que el usuario pague dos veces por doble clic --}}
-    <form action="{{ route('checkout.procesar') }}" method="POST" data-un-solo-envio novalidate>
+    <form action="{{ route('checkout.procesar') }}" method="POST" data-un-solo-envio>
         @csrf
 
         <div class="row g-4">
@@ -131,7 +131,8 @@
                                 <input type="text" class="form-control @error('numero_tarjeta') is-invalid @enderror"
                                        id="numero_tarjeta" name="numero_tarjeta" inputmode="numeric"
                                        autocomplete="cc-number" data-obligatorio="si"
-                                       placeholder="4111 1111 1111 1111">
+                                       placeholder="4111 1111 1111 1111" pattern="[0-9 ]{13,23}"
+                                       title="Ingrese entre 13 y 19 dígitos; puede separarlos con espacios.">
                                 @error('numero_tarjeta') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
@@ -165,7 +166,8 @@
                                 <label for="cvv" class="form-label">CVV</label>
                                 <input type="password" class="form-control @error('cvv') is-invalid @enderror"
                                        id="cvv" name="cvv" inputmode="numeric" maxlength="4"
-                                       autocomplete="cc-csc" data-obligatorio="si" placeholder="123">
+                                        autocomplete="cc-csc" data-obligatorio="si" pattern="[0-9]{3,4}"
+                                        title="El CVV debe tener 3 o 4 dígitos." placeholder="123">
                                 @error('cvv') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
@@ -203,8 +205,10 @@
 
                         <label for="comprobante_sinpe" class="form-label">Número de comprobante</label>
                         <input type="text" class="form-control @error('comprobante_sinpe') is-invalid @enderror"
-                               id="comprobante_sinpe" name="comprobante_sinpe" maxlength="30" data-obligatorio="si"
-                               value="{{ old('comprobante_sinpe') }}" placeholder="Ej. 123456789">
+                               id="comprobante_sinpe" name="comprobante_sinpe" inputmode="numeric"
+                               maxlength="30" minlength="6" pattern="[0-9]{6,30}" data-obligatorio="si"
+                               value="{{ old('comprobante_sinpe') }}" placeholder="Ej. 123456789"
+                               title="El comprobante debe contener entre 6 y 30 dígitos.">
                         @error('comprobante_sinpe') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>

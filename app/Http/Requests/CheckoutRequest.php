@@ -39,7 +39,10 @@ class CheckoutRequest extends FormRequest
 
             // --- Tarjeta de crédito / débito ---
             'nombre_tarjeta' => ['required_if:metodo_pago,tarjeta', 'nullable', 'string', 'max:120'],
-            'numero_tarjeta' => ['required_if:metodo_pago,tarjeta', 'nullable', 'string', 'max:25'],
+            'numero_tarjeta' => [
+                'required_if:metodo_pago,tarjeta', 'nullable', 'string', 'max:25',
+                'regex:/^[0-9\s-]+$/', 'digits_between:13,19',
+            ],
             'mes'            => ['required_if:metodo_pago,tarjeta', 'nullable', 'integer', 'between:1,12'],
             'anio'           => ['required_if:metodo_pago,tarjeta', 'nullable', 'integer', 'between:'.now()->year.','.(now()->year + 20)],
             'cvv'            => ['required_if:metodo_pago,tarjeta', 'nullable', 'digits_between:3,4'],
@@ -48,7 +51,10 @@ class CheckoutRequest extends FormRequest
             'correo_paypal' => ['required_if:metodo_pago,paypal', 'nullable', 'email:rfc', 'max:160'],
 
             // --- SINPE Móvil ---
-            'comprobante_sinpe' => ['required_if:metodo_pago,sinpe', 'nullable', 'string', 'min:6', 'max:30'],
+            'comprobante_sinpe' => [
+                'required_if:metodo_pago,sinpe', 'nullable', 'string', 'min:6', 'max:30',
+                'regex:/^\d{6,30}$/',
+            ],
         ];
     }
 

@@ -375,6 +375,33 @@ class CheckoutTest extends TestCase
         ]))->assertSessionHasErrors('correo_paypal');
     }
 
+    public function test_rechaza_un_comprobante_sinpe_con_letras(): void
+    {
+        $this->conCarrito();
+
+        $this->actingAs($this->cliente)->post(route('checkout.procesar'), $this->datos([
+            'metodo_pago'       => 'sinpe',
+            'comprobante_sinpe' => 'ABC123456',
+            'numero_tarjeta'    => null,
+            'cvv'               => null,
+            'mes'               => null,
+            'anio'              => null,
+        ]))->assertSessionHasErrors('comprobante_sinpe');
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_rechaza_un_numero_de_tarjeta_con_letras(): void
+    {
+        $this->conCarrito();
+
+        $this->actingAs($this->cliente)->post(route('checkout.procesar'), $this->datos([
+            'numero_tarjeta' => '4111 ABCD 1111 1111',
+        ]))->assertSessionHasErrors('numero_tarjeta');
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
     public function test_rechaza_un_metodo_de_pago_inexistente(): void
     {
         $this->conCarrito();

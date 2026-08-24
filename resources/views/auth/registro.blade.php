@@ -13,7 +13,7 @@
                     <p class="text-muted small mb-0">Regístrese para comprar y seguir sus pedidos.</p>
                 </div>
 
-                <form action="{{ route('registro.guardar') }}" method="POST" novalidate>
+                <form action="{{ route('registro.guardar') }}" method="POST">
                     @csrf
 
                     <div class="mb-3">
@@ -22,7 +22,9 @@
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                    id="name" name="name" value="{{ old('name') }}" required
-                                   maxlength="120" autocomplete="name" autofocus>
+                                   maxlength="120" autocomplete="name" autofocus
+                                   pattern="[A-Za-zÁÉÍÓÚáéíóúÜüÑñÀ-ÿ .'-]+"
+                                   title="Use únicamente letras, espacios, apóstrofos, puntos o guiones.">
                             @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
@@ -33,7 +35,8 @@
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                    id="email" name="email" value="{{ old('email') }}" required
-                                   maxlength="160" autocomplete="email">
+                                   maxlength="160" autocomplete="email"
+                                   title="Ingrese un correo válido, por ejemplo: nombre@dominio.com">
                             @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>

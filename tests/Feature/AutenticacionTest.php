@@ -107,6 +107,19 @@ class AutenticacionTest extends TestCase
         $this->assertGuest();
     }
 
+    public function test_no_permite_registrar_un_correo_con_formato_invalido(): void
+    {
+        $this->post(route('registro.guardar'), [
+            'name'                  => 'Persona Válida',
+            'email'                 => 'persona@',
+            'password'              => 'Clave1234',
+            'password_confirmation' => 'Clave1234',
+            'terminos'              => '1',
+        ])->assertSessionHasErrors('email');
+
+        $this->assertGuest();
+    }
+
     public function test_exige_aceptar_los_terminos(): void
     {
         $this->post(route('registro.guardar'), [
