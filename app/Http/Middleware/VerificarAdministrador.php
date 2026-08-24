@@ -16,6 +16,8 @@ class VerificarAdministrador
 {
     public function handle(Request $request, Closure $siguiente): Response
     {
+        // Si no hay usuario autenticado o su bandera es_admin es falsa,
+        // se corta la petición con un 403 antes de llegar al controlador.
         if (! $request->user()?->esAdministrador()) {
             abort(403, 'Esta sección es solo para administradores de la tienda.');
         }
