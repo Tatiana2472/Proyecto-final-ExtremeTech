@@ -108,6 +108,7 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('perfil.mostrar') }}"><i class="bi bi-person me-2"></i>Mi perfil</a></li>
                             <li><a class="dropdown-item" href="{{ route('pedidos.historial') }}"><i class="bi bi-bag-check me-2"></i>Mis pedidos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('favoritos.index') }}"><i class="bi bi-heart me-2"></i>Mis favoritos</a></li>
                             @if (auth()->user()->esAdministrador())
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.panel') }}"><i class="bi bi-speedometer2 me-2"></i>Panel de administración</a></li>

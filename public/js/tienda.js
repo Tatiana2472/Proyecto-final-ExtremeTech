@@ -140,6 +140,65 @@
     });
 
     /* ------------------------------------------------------------------
+     | Favoritos: marcar y desmarcar sin recargar la página
+     |
+     | El servidor decide con toggle() si el producto entra o sale de la
+     | tabla pivote, y devuelve en «marcado» cómo quedó. El botón se pinta
+     | según esa respuesta y no según lo que el navegador supuso.
+     | ---------------------------------------------------------------- */
+
+    document.addEventListener('submit', async function (evento) {
+        const formulario = evento.target.closest('form[data-favorito]');
+        if (!formulario) return;
+
+        evento.preventDefault();
+
+        const boton = formulario.querySelector('button');
+        if (boton) boton.disabled = true;
+
+        try {
+            const respuesta = await fetch(formulario.action, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'X-CSRF-TOKEN': tokenCsrf,
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                body: new FormData(formulario),
+            });
+
+            const datos = await respuesta.json().catch(() => ({}));
+
+            if (!respuesta.ok) {
+                avisar(datos.mensaje || 'No se pudo actualizar sus favoritos.', 'danger');
+                return;
+            }
+
+            if (boton) {
+                const icono = boton.querySelector('i');
+
+                boton.classList.toggle('es-favorito', datos.marcado);
+                boton.setAttribute('aria-pressed', datos.marcado ? 'true' : 'false');
+                boton.title = datos.marcado ? 'Quitar de favoritos' : 'Agregar a favoritos';
+
+                if (icono) {
+                    icono.classList.toggle('bi-heart-fill', datos.marcado);
+                    icono.classList.toggle('bi-heart', !datos.marcado);
+                }
+            }
+
+            avisar(datos.mensaje, datos.marcado ? 'success' : 'secondary');
+        } catch (e) {
+            // Si falla la petición asíncrona se envía el formulario normal.
+            formulario.removeAttribute('data-favorito');
+            formulario.submit();
+            return;
+        } finally {
+            if (boton) boton.disabled = false;
+        }
+    });
+
+    /* ------------------------------------------------------------------
      | Carrito: los selectores de cantidad envían el formulario solos
      | ---------------------------------------------------------------- */
 

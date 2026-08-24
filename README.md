@@ -42,7 +42,7 @@ La pasarela de pago trabaja en modo simulado (no se envían datos a ningún banc
 bash
 php artisan test
 
-El proyecto cuenta con 245 pruebas automatizadas (58 unitarias y 187 de integración/funcionales), con 721 aserciones en total, ejecutadas con PHPUnit 11 sobre una base de datos SQLite en memoria (no afectan los datos de desarrollo). 
+El proyecto cuenta con 261 pruebas automatizadas (58 unitarias y 203 de integración/funcionales), con 754 aserciones en total, ejecutadas con PHPUnit 11 sobre una base de datos SQLite en memoria (no afectan los datos de desarrollo). 
 
 5. Tecnologías utilizadas
 Backend: PHP 8.2 · Laravel 12 (MVC, Eloquent ORM, migraciones, Blade)

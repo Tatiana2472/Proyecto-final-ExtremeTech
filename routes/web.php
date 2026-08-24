@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\SesionController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
@@ -87,6 +88,11 @@ Route::middleware('auth')->group(function () {
     // Proceso de compra
     Route::get('/checkout', [CheckoutController::class, 'mostrar'])->name('checkout.mostrar');
     Route::post('/checkout', [CheckoutController::class, 'procesar'])->name('checkout.procesar');
+
+    // Lista de deseos (relación muchos a muchos con la tabla pivote favoritos)
+    Route::get('/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
+    Route::post('/favoritos/{producto}', [FavoritoController::class, 'alternar'])->name('favoritos.alternar');
+    Route::delete('/favoritos/{producto}', [FavoritoController::class, 'eliminar'])->name('favoritos.eliminar');
 
     // Pedidos e historial
     Route::get('/mis-pedidos', [PedidoController::class, 'historial'])->name('pedidos.historial');

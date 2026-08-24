@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
@@ -61,6 +62,19 @@ class Product extends Model
     public function lineasPedido(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    /**
+     * Usuarios que tienen este producto en su lista de deseos.
+     *
+     * Es el otro extremo de la relación MUCHOS A MUCHOS declarada en
+     * User::favoritos(), sobre la misma tabla pivote «favoritos». Tenerla
+     * declarada en los dos modelos permite recorrer la relación en cualquier
+     * dirección: los favoritos de un cliente, o cuánta gente quiere un producto.
+     */
+    public function seguidores(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favoritos')->withTimestamps();
     }
 
     /* ----------------------------------------------------------------------

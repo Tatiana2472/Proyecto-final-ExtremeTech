@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Notifications\RestablecerContrasena;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -70,6 +71,30 @@ class User extends Authenticatable
     public function carrito(): HasOne
     {
         return $this->hasOne(Cart::class);
+    }
+
+    /**
+     * Lista de deseos: los productos que el usuario marcó como favoritos.
+     *
+     * Relación MUCHOS A MUCHOS a través de la tabla pivote «favoritos». Es de
+     * muchos a muchos porque un usuario guarda varios productos y un mismo
+     * producto lo guardan varios usuarios; el lado opuesto es
+     * Product::seguidores().
+     *
+     * withTimestamps() hace que al marcar un favorito se guarden created_at y
+     * updated_at en la pivote, lo que permite ordenarlos por fecha.
+     */
+    public function favoritos(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'favoritos')
+            ->withTimestamps()
+            ->latest('favoritos.created_at');
+    }
+
+    /** ¿El usuario ya tiene este producto en su lista de deseos? */
+    public function tieneFavorito(Product $producto): bool
+    {
+        return $this->favoritos()->whereKey($producto->getKey())->exists();
     }
 
     /* ----------------------------------------------------------------------

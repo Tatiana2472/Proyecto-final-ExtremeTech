@@ -23,6 +23,23 @@
         @endif
     </a>
 
+    {{-- Lista de deseos: solo tiene sentido con la sesión iniciada, porque los
+         favoritos se guardan contra el usuario en la tabla pivote --}}
+    @auth
+        @php $esFavorito = auth()->user()->tieneFavorito($producto); @endphp
+
+        <form action="{{ route('favoritos.alternar', $producto) }}" method="POST"
+              class="ts-favorito" data-favorito>
+            @csrf
+            <button type="submit"
+                    class="btn btn-sm ts-btn-corazon {{ $esFavorito ? 'es-favorito' : '' }}"
+                    aria-pressed="{{ $esFavorito ? 'true' : 'false' }}"
+                    title="{{ $esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos' }}">
+                <i class="bi {{ $esFavorito ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+            </button>
+        </form>
+    @endauth
+
     <div class="p-3 d-flex flex-column flex-grow-1">
         <span class="ts-categoria-pill">{{ $producto->categoria->nombre ?? 'General' }}</span>
 

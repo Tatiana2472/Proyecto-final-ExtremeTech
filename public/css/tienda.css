@@ -252,6 +252,43 @@ a {
 
 /* ----------------------------- Tarjeta producto ------------------------- */
 
+/* Botón de favorito (corazón) sobre la imagen de la tarjeta ------------- */
+
+.ts-favorito {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
+}
+
+.ts-btn-corazon {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    line-height: 1;
+    border-radius: 50%;
+    border: 1px solid var(--ts-borde);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--ts-negro);
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.ts-btn-corazon:hover {
+    transform: scale(1.12);
+    color: #c41e3a;
+}
+
+/* Marcado: el corazón queda relleno y en rojo */
+.ts-btn-corazon.es-favorito {
+    color: #c41e3a;
+    border-color: #f0b8c1;
+}
+
+/* La tarjeta necesita posición relativa para anclar el corazón */
+.ts-card {
+    position: relative;
+}
+
 .ts-card {
     border: 1px solid var(--ts-borde);
     border-radius: 0.85rem;
