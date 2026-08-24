@@ -203,6 +203,16 @@
         });
     }
 
+    // El comprobante SINPE es numérico y no debe normalizar letras de forma
+    // silenciosa antes de enviarlo al servidor.
+    const comprobanteSinpe = document.getElementById('comprobante_sinpe');
+
+    if (comprobanteSinpe) {
+        comprobanteSinpe.addEventListener('input', function () {
+            comprobanteSinpe.value = comprobanteSinpe.value.replace(/\D/g, '').slice(0, 30);
+        });
+    }
+
     /* ------------------------------------------------------------------
      | Evitar doble envío en los formularios de compra
      | ---------------------------------------------------------------- */
