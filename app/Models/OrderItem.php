@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Línea de detalle de un pedido.
+ * Línea de detalle de un pedidos.
  */
 class OrderItem extends Model
 {

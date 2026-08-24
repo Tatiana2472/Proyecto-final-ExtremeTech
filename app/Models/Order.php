@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
 /**
- * Pedido (compra) realizado por un usuario.
+ * Pedido (compra) realizado por un usuarios.
  */
 class Order extends Model
 {

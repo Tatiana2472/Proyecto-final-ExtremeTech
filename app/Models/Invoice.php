@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Factura emitida a partir de un pedido pagado.
+ * Factura emitida a partir de un pedido pagados.
  */
 class Invoice extends Model
 {

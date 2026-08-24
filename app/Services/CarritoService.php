@@ -15,7 +15,7 @@ use RuntimeException;
  * Lógica del carrito de compras.
  *
  * Toda la manipulación del carrito pasa por acá (y no por los controladores)
- * para que exista una sola fuente de verdad y para poder probarla con pruebas
+ * para que exista una sola fuente de verdad y para poder probarlas con pruebas
  * unitarias sin necesidad de hacer peticiones HTTP.
  */
 class CarritoService

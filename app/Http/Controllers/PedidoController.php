@@ -24,7 +24,7 @@ class PedidoController extends Controller
         ]);
     }
 
-    /** Detalle de un pedido propio. */
+    /** Detalle de un pedido propio con sus variables. */
     public function detalle(Request $peticion, Order $pedido): View
     {
         $this->autorizarPedido($peticion, $pedido);

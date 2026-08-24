@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Transacción registrada por la pasarela de pago.
+ * Transacción registrada por la pasarela de pagos.
  */
 class Payment extends Model
 {

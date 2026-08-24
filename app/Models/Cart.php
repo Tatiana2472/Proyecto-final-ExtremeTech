@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Carrito de compras de un usuario o de un visitante anónimo.
+ * Carrito de compras de un usuario o de un visitante anónimos.
  */
 class Cart extends Model
 {

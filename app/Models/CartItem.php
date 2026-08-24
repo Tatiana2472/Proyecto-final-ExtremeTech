@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Línea del carrito: un producto con su cantidad y precio unitario.
+ * Línea del carrito: un producto con su cantidad y precio unitarios.
  */
 class CartItem extends Model
 {

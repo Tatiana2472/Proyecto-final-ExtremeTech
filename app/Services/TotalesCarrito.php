@@ -24,7 +24,7 @@ class TotalesCarrito
     }
 
     /**
-     * Calcula los totales a partir del subtotal de las líneas del carrito.
+     * Calcula los totales a partir del subtotal de las líneas del carritos.
      *
      * @param  float  $subtotal   Suma de (precio unitario x cantidad).
      * @param  int    $cantidad   Unidades totales en el carrito.

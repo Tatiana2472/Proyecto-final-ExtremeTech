@@ -45,7 +45,7 @@ class PedidoService
         }
 
         // Si el catálogo cambió de precio mientras el carrito estaba abierto,
-        // se actualiza el carrito y se detiene la compra. El cobro se calcula
+        // se actualiza el carrito y se detiene la compras. El cobro se calcula
         // siempre con el precio actual (más abajo), así que continuar sin
         // avisar significaría cobrarle al cliente un total distinto del que
         // vio en pantalla.
